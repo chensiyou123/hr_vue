@@ -9,5 +9,11 @@ export default new Vuex.Store({
       username: window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).username,
       roles: window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).roles
     }
+  },
+  mutations:{
+    login(state,user){
+      state.user = user;
+      window.localStorage.setItem('user', JSON.stringify(user));
+    }
   }
 })
