@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import store from './store/index'
 import 'element-ui/lib/theme-chalk/index.css'
 import {postRequest} from './utils/api'
+import {initMenu} from './utils/utils'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
@@ -24,6 +25,9 @@ router.beforeEach((to, from, next)=>{
     }else {
       next();
     }
+  }else {
+    initMenu(router, store);
+    next();
   }
 })
 

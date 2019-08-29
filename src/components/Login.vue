@@ -45,6 +45,8 @@
                     if (xhr && xhr.status == 200) {
                         let data = xhr.data;
                         vm.$store.commit('login', data.obj);
+                        let path = vm.$route.query.redirect;
+                        vm.$router.replace({path: path == '/' || path == undefined ? '/home' : path});
                     }
                 })
             },
