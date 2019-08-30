@@ -17,6 +17,10 @@ export default new Vuex.Store({
       state.user = user;
       window.localStorage.setItem('user', JSON.stringify(user));
     },
+    logout(state){
+      window.localStorage.removeItem('user');
+      state.routes = [];
+    },
     //菜单信息存入
     initMenu(state, menus){
       state.routes = menus;

@@ -7,10 +7,12 @@ import ElementUI from 'element-ui'
 import store from './store/index'
 import 'element-ui/lib/theme-chalk/index.css'
 import {postRequest} from './utils/api'
+import {getRequest} from './utils/api'
 import {initMenu} from './utils/utils'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
+Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest = postRequest;
 
 router.beforeEach((to, from, next)=>{
