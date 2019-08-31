@@ -19,7 +19,6 @@ export const postRequest=(url, params)=>{
   })
 
 }
-
 export const getRequest=((url,params)=>{
   return axios({
     method: 'get',
