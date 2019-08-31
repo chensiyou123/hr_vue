@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import '../lib/stomp'
+import '../lib/sockjs'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state:{
@@ -10,6 +12,7 @@ export default new Vuex.Store({
       roles: window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).roles
     },
     routes: [],
+    stomp: null,
   },
   mutations:{
     //登陆用户存入
@@ -28,7 +31,7 @@ export default new Vuex.Store({
   },
   actions:{
     connect(context){
-
+      context.state.stomp = Stomp.over(new SockJS("/ws/endpointChat"));
     }
   }
 })

@@ -18,6 +18,10 @@ module.exports = {
           '^/': ''
         }
       },
+      '/ws/*': {
+        target: 'ws://127.0.0.1:8082',
+        ws: true
+      }
     },
 
     // Various Dev Server settings
