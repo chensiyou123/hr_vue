@@ -32,6 +32,10 @@ export default new Vuex.Store({
     toggleNFDot(state, newValue){
       state.nfDot = newValue;
     },
+    //更新系统信息
+    updateMsgList(state, newMsgList){
+      state.msgList = newMsgList;
+    },
   },
   actions:{
     connect(context){

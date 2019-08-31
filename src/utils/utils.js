@@ -1,5 +1,5 @@
-
 import {getRequest} from './api'
+
 export const initMenu=(router, store)=>{
   if (store.state.routes.length > 0) {
     return;
@@ -9,9 +9,18 @@ export const initMenu=(router, store)=>{
       let fmtRoutes = formatRoutes(xhr.data);
       router.addRoutes(fmtRoutes);
       store.commit('initMenu', fmtRoutes);
-      store.dispatch('connect');
+      //store.dispatch('connect');
     }
   })
+}
+
+// 只生成一层 a=b;c=d
+export const eduFilterParam =obj=> {
+  let rs = []
+  for (let ii in obj) {
+    rs.push(ii + '=' + obj[ii])
+  }
+  return rs.join(';');
 }
 
 /**
@@ -35,18 +44,19 @@ export const formatRoutes=(routes)=>{
     let fmRouter = {
       path: path,
       component(resolve){
+
         if (component.startsWith("Home")) {
           require(['../components/' + component + '.vue'], resolve)
         } else if (component.startsWith("Emp")) {
-        //  require(['../components/emp/' + component + '.vue'], resolve)
+          require(['../components/emp/' + component + '.vue'], resolve)
         } else if (component.startsWith("Per")) {
-        //  require(['../components/personnel/' + component + '.vue'], resolve)
+          //  require(['../components/personnel/' + component + '.vue'], resolve)
         } else if (component.startsWith("Sal")) {
-       //   require(['../components/salary/' + component + '.vue'], resolve)
+          //   require(['../components/salary/' + component + '.vue'], resolve)
         } else if (component.startsWith("Sta")) {
-        //  require(['../components/statistics/' + component + '.vue'], resolve)
+          //  require(['../components/statistics/' + component + '.vue'], resolve)
         } else if (component.startsWith("Sys")) {
-         // require(['../components/system/' + component + '.vue'], resolve)
+          // require(['../components/system/' + component + '.vue'], resolve)
         }
       },
       name: name,

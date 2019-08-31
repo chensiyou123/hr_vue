@@ -9,11 +9,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import {postRequest} from './utils/api'
 import {getRequest} from './utils/api'
 import {initMenu} from './utils/utils'
+import {eduFilterParam} from './utils/utils'
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest = postRequest;
+Vue.prototype.eduFilterParam = eduFilterParam;
 
 router.beforeEach((to, from, next)=>{
   if (to.name == 'Login') {
@@ -29,6 +31,8 @@ router.beforeEach((to, from, next)=>{
     }
   }else {
     initMenu(router, store);
+    if(to.path=='/chat')
+      store.commit("updateMsgList", []);
     next();
   }
 })
