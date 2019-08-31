@@ -13,6 +13,7 @@ export default new Vuex.Store({
     },
     routes: [],
     stomp: null,
+    nfDot: false
   },
   mutations:{
     //登陆用户存入
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     //菜单信息存入
     initMenu(state, menus){
       state.routes = menus;
+    },
+    toggleNFDot(state, newValue){
+      state.nfDot = newValue;
     },
   },
   actions:{
