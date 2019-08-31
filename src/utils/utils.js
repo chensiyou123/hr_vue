@@ -7,6 +7,7 @@ export const initMenu=(router, store)=>{
   getRequest("/config/sysmenu").then(xhr=>{
     if(xhr && xhr.status==200){
       let fmtRoutes = formatRoutes(xhr.data);
+      router.addRoutes(fmtRoutes);
       store.commit('initMenu', fmtRoutes);
       store.dispatch('connect');
     }
