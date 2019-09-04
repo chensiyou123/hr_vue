@@ -11,6 +11,7 @@
           <el-upload :show-file-list="false"   accept="application/vnd.ms-excel"  action="/employee/basic/importEmp"  :on-success="fileUploadSuccess"   :on-error="fileUploadError"  :before-upload="beforeFileUpload" style="display: inline">
             <el-button size="mini" type="success" :loading="fileUploadBtnText=='正在导入'"><i class="fa fa-lg fa-level-up" style="margin-right: 5px"></i>{{fileUploadBtnText}}</el-button>
           </el-upload>
+          <el-button type="success" size="mini" @click="exportEmps"><i class="fa fa-lg fa-level-down" style="margin-right: 5px"></i>导出数据</el-button>
         </div>
       </el-header>
     </el-container>
@@ -146,7 +147,11 @@
                     endContract: '',
                     workAge: ''
                 }
-            }
+            },
+            //到处数据
+            exportEmps() {
+                window.open("/employee/basic/exportEmp", "_parent");
+            },
         },
         mounted() {
             let vm = this;
