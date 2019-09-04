@@ -12,6 +12,7 @@
             <el-button size="mini" type="success" :loading="fileUploadBtnText=='正在导入'"><i class="fa fa-lg fa-level-up" style="margin-right: 5px"></i>{{fileUploadBtnText}}</el-button>
           </el-upload>
           <el-button type="success" size="mini" @click="exportEmps"><i class="fa fa-lg fa-level-down" style="margin-right: 5px"></i>导出数据</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-plus" @click="showAddEmpView">添加员工</el-button>
         </div>
       </el-header>
     </el-container>
@@ -22,6 +23,8 @@
         name: "EmpBasic",
         data(){
             return{
+                dialogVisible:false,//添加弹窗控制
+                dialogTitle: '',//弹窗
                 fileUploadBtnText: '导入数据',
                 currentPage: 1,
                 emps:[],
@@ -151,6 +154,17 @@
             //到处数据
             exportEmps() {
                 window.open("/employee/basic/exportEmp", "_parent");
+            },
+            //添加员工
+            showAddEmpView() {
+                let vm = this;
+                vm.dialogTitle = "添加员工";
+                vm.dialogVisible = true;
+                vm.getRequest("/employee/basic/maxWorkID").then(xhr => {
+                    if (xhr && xhr.status == 200) {
+                        vm.emp.workID = xhr.data;
+                    }
+                })
             },
         },
         mounted() {
